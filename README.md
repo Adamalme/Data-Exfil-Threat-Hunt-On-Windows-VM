@@ -1,5 +1,11 @@
 # 🚨 Threat Hunt Investigation: Data Exfiltration By Disgruntled Employee 
 
+## 📋 Quick Links
+- [Key Findings](#-key-findings)
+- [Investigation Timeline](#-investigation-timeline--kql-queries)
+- [MITRE ATT&CK Mapping](#-mitre-attck-mapping)
+- [Lessons Learned](#-lessons-learned)
+
 **Author:** Adam Alme \
 **Date:** Sept 27, 2026 \
 **Lab Type:** Threat Hunting / Data Exfiltration / MITRE ATT&CK Mapping  \
@@ -7,6 +13,29 @@
 ![DATA EXFILTRATION](https://github.com/user-attachments/assets/5d63ac63-fcaa-47bb-a49d-8ea211232822)
 
 ---
+
+## 🎯 Key Findings
+- **7z.exe execution** via PowerShell with -ExecutionPolicy Bypass
+- **ZIP archives created** in suspicious locations (ProgramData)
+- **Data staging behavior** consistent with insider threat TTP
+- **No confirmed exfiltration**, but pre-exfiltration activity detected
+  
+
+## 🛠️ Skills Demonstrated
+- Kusto Query Language (KQL) proficiency
+- Event correlation across multiple data sources
+- MITRE ATT&CK framework mapping
+- Threat hunting methodology
+- Professional investigation documentation
+- Data analysis and timeline reconstruction
+
+
+## 📚 Tools & Technologies Used
+- Microsoft Defender for Endpoint (MDE)
+- Advanced Hunting (KQL queries)
+- Azure Monitor
+- MITRE ATT&CK Framework
+
 
 ## :bookmark_tabs: Overview
 This lab simulates a real-world threat hunting scenario involving a disgruntled employee suspected of malicious insider behavior. After being placed on a performance improvement plan (PIP), the employee was subsequently terminated. Concerns were raised that they may have attempted to steal proprietary company data from their corporate-assigned endpoint. This investigation uses Microsoft Defender for Endpoint (MDE) telemetry, KQL queries, and MITRE ATT&CK mapping to uncover potential data exfiltration activities involving unauthorized file archiving and suspicious PowerShell execution.
@@ -128,10 +157,41 @@ The user account `Cyberlab123` installed 7-Zip via PowerShell, created a ZIP arc
 ### 7. **Improvement**
 - Hardened PowerShell controls, added NSG rules, and enhanced baseline detection with Sentinel
 
+  
+### 📚 Lessons Learned
+
+### What Worked
+- ✅ Correlating events across multiple tables revealed the full attack chain
+- ✅ Timeline-based investigation (±1-10 minutes) caught related activity
+- ✅ MITRE ATT&CK mapping provided context for each technique
+- ✅ PowerShell execution policy bypass was the clearest indicator
+
+### What Could Improve Detection
+- ⚠️ Archive tools (7z.exe) should be restricted in non-admin contexts
+- ⚠️ PowerShell -ExecutionPolicy Bypass should trigger immediate alerts
+- ⚠️ File staging in ProgramData requires behavior-based detection
+- ⚠️ Need baseline for "normal" compression activity vs. suspicious patterns
+
+### Key Takeaway
+> "An alert is the beginning of an investigation, not the conclusion. 
+> Correlating file, process, and network events provides the evidence 
+> needed to confirm malicious intent vs. legitimate activity."
+
+### For Future Investigations
+1. Always establish a timeline (+/- window for events)
+2. Correlate across at least 3 data sources (files, processes, network)
+3. Map findings to MITRE ATT&CK for consistency
+4. Document assumptions and gaps in investigation
+5. Include preventive recommendations based on findings
+
+
+  
+
 ---
 
 > **Created using Microsoft Defender for Endpoint, Azure Monitor, and KQL**  
-> **Project by Adam Alme | [https://github.com/Adamalme]
+**GitHub:** [github.com/Adamalme/threat-hunt-investigation](https://github.com/Adamalme/threat-hunt-investigation)  
+**Author:** Adam Alme
 
 
 
