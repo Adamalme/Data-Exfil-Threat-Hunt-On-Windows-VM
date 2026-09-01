@@ -190,7 +190,7 @@ The user account `Cyberlab123` installed 7-Zip via PowerShell, created a ZIP arc
 ---
 
 > **Created using Microsoft Defender for Endpoint, Azure Monitor, and KQL**  
-**GitHub:** [github.com/Adamalme/threat-hunt-investigation](https://github.com/Adamalme/threat-hunt-investigation)  
+> **Project by Adam Alme | [GitHub](https://github.com/Adamalme) | [LinkedIn](https://www.linkedin.com/in/adam-alme/)**  
 **Author:** Adam Alme
 
 
